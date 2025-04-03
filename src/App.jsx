@@ -9,13 +9,13 @@ function App() {
   const [output, setOutput] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:8000/avatars')
+    axios.get('https://prompt-copilot-backend.onrender.com/avatars')
       .then(res => setAvatars(res.data))
   }, [])
 
   const handleWrap = () => {
     if (!selected || !input) return
-    axios.post('http://localhost:8000/wrap_prompt', {
+    axios.post('https://prompt-copilot-backend.onrender.com/wrap_prompt', {
       avatar_id: selected,
       user_input: input
     }).then(res => setOutput(res.data.wrapped_prompt))
