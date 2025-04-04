@@ -14,12 +14,17 @@ function App() {
   }, [])
 
   const handleWrap = () => {
-    if (!selected || !input) return
+    if (!selected || !input) return;
     axios.post('https://prompt-copilot-backend.onrender.com/wrap_prompt', {
+      user_id: "guest", // hardcoded for now
       avatar_id: selected,
-      user_input: input
-    }).then(res => setOutput(res.data.wrapped_prompt))
+      user_input: input,
+      user_context: {
+        subject: "none" // hardcoded for now
+      }
+    }).then(res => setOutput(res.data.wrapped_prompt));
   }
+  
 
   return (
     <div style={{ padding: 20, fontFamily: 'sans-serif' }}>
